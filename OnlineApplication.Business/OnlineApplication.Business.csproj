@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineApplication.Common\OnlineApplication.Common.csproj" />
+    <ProjectReference Include="..\OnlineApplication.DB\OnlineApplication.DB.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OnlineApplication.Common.Model.RegistrationModel>
+
+
+<div class="row">
+    <table class="table table-striped border" id="table1">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Designation
+                </th>
+                <th>
+                    Email ID
+                </th>
+                <th>
+                    Contact
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    PILOT
+                </th>
+
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EngagementWithPilot)
+                    </td>
+
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

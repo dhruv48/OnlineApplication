@@ -1,0 +1,152 @@
+﻿@model IEnumerable<OnlineApplication.Common.Model.RegistrationModel>
+@using OnlineApplication.Common.EnumHelper
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+@*Capacity*@
+<script>
+
+    function CallChangefuncCapacity(id) {
+         $.ajax({
+             url: "@Url.Action("FilterByCapacity", "Register")",
+             data: { id: id },
+            type: "Get",
+            dataType: "html",    
+             success: function (data) {
+                 
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#myPartialView").html( data ); // HTML DOM replace
+            }
+        });
+    }
+</script>
+
+@*category*@
+<script>
+    function CallChangefuncCategory(id) {
+         $.ajax({
+             url: "@Url.Action("FilterByCategory", "Register")",
+             data: { id: id },
+            type: "Get",
+            dataType: "html",    
+             success: function (data) {
+                 
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#myPartialView").html( data ); // HTML DOM replace
+            }
+        });
+    }
+</script>
+  
+@*TechnicalParameters*@
+<script>
+    function CallChangefuncFunctionParameter(id) {
+         $.ajax({
+             url: "@Url.Action("FilterByTechnicalParameters", "Register")",
+             data: { id: id },
+            type: "Get",
+            dataType: "html",    
+             success: function (data) {
+                 //console.log(data);
+                //Whatever result you have got from your controller with html partial view replace with a specific html.
+                $("#myPartialView").html( data ); // HTML DOM replace
+            }
+        });
+    }
+</script>
+  
+
+<p>
+    <a class="btn btn-primary" asp-action="Insert">+Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+    @Html.DropDownList(" Capacity",  Html.GetEnumSelectList<Capacity>()," Capacity",new { @class = "form-control", @onchange = "CallChangefuncCapacity(this.value)"})
+    </div>
+
+    <div class="col-md-4">
+          @Html.DropDownList("Category",  Html.GetEnumSelectList<CategoryOptions>(),"Category",new { @class = "form-control", @onchange = "CallChangefuncCategory(this.value)"})
+    </div>
+    <div class="col-md-4">
+          @Html.DropDownList("Technical Parameters",  Html.GetEnumSelectList<TechnicalParameters>(),"Technical Parameters",new { @class = "form-control", @onchange = "CallChangefuncFunctionParameter(this.value)"})
+    </div>
+</div>
+<br />
+
+
+<div id="myPartialView">
+         @*@Html.RenderPartialAsync("_Admin",Model);*@
+         @{Html.RenderPartial("_GetItem", Model);}
+</div>
+
+@if(ViewBag.flag ==true)
+{
+    <div class="row">
+    <table class="table-primary">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Designation
+                </th>
+                <th>
+                    Email ID
+                </th>
+                <th>
+                    Contact
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    PILOT
+                </th>
+
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EngagementWithPilot)
+                    </td>
+
+                  
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+}
